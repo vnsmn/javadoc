@@ -101,7 +101,8 @@ public class Util {
 		int i = 0;
 		DecimalFormat decimalFormatter = new DecimalFormat(
 				String.copyValueOf(patterns));
-		for (String s : sl) {
+		String defColor = "black";
+		for (String s : sl) {			
 			if ("true".equals(sb)) {
 				code = "" + decimalFormatter.format(++i)
 						+ ".&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -109,14 +110,18 @@ public class Util {
 			} else {
 				code = StringEscapeUtils.escapeHtml4(s) + "<br>";
 			}
+			if (s.matches("^([0-9]+[.]){0,1}([ ]|\t)*[*][/]([ ]*|\n*|$)")) {
+				defColor = "black";
+				code = code.replace("*/", " ");
+			}
 			if (code.contains(" //error") || code.contains(" ///error")) {
 				code = "<font color=\"red\">" + code + "</font>";
-			}
-			if (code.contains(" //ok") || code.contains(" ///ok")) {
+			} else if (code.contains(" //ok") || code.contains(" ///ok")) {
 				code = "<font color=\"green\">" + code + "</font>";
-			}						
-			if (code.contains(" //warning") || code.contains(" ///warning")) {
+			} else if (code.contains(" //warning") || code.contains(" ///warning")) {
 				code = "<font color=\"GoldenRod\">" + code + "</font>";
+			} else {
+				code = String.format("<font color=\"%s\">%s</font>", defColor, code);
 			}
 			if (code.contains(" ///ok")
 					|| code.contains(" ///error") || code.contains(" ///warning")) {
@@ -129,6 +134,10 @@ public class Util {
 				code = code.replace(" //error", " ");
 				code = code.replace(" //ok", " ");
 				code = code.replace(" //warning", " ");
+			} 			
+			if (s.matches("^([0-9]+[.]){0,1}(|[ ]|\t)*[/][*]error([ ]*|\n*|$)")) {
+				defColor = "red";
+				code = code.replace("/*error", "<b>//compile-time error</b>");
 			}
 			code = String.format("<a href=\"#\" id=\"i%s\" name=\"n%s\"></a>",
 					i, i) + code;
