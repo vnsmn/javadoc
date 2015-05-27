@@ -1,0 +1,9 @@
+"11.		/*error".matches("^([0-9]+[.]){0,1}([ ]|\t)*[/][*]error([ ]*|\n*|$)")
+
+
+" */".matches("^([ ]|\t)*[*][/]([ ]*|\n*|$)")
+
+
+" /*error ".replace(" /*error", " sssss");
+(java.lang.String)  sssss 
+
