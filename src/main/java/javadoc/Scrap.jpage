@@ -3,7 +3,3 @@
 
 " */".matches("^([ ]|\t)*[*][/]([ ]*|\n*|$)")
 
-
-" /*error ".replace(" /*error", " sssss");
-(java.lang.String)  sssss 
-
