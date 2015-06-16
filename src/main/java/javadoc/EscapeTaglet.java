@@ -50,6 +50,7 @@ public class EscapeTaglet implements com.sun.tools.doclets.Taglet {
 	}
 
 	public boolean isInlineTag() {
+		
 		return true;
 	}
 
