@@ -112,7 +112,7 @@ public class Util {
 			}
 			if (s.matches("^([0-9]+[.]){0,1}([ ]|\t)*[*][/]([ ]*|\n*|$)")) {
 				defColor = "black";
-				code = code.replace("*/", " ");
+				code = code.replace("*/", ""); //compile-time error finish
 			}
 			if (code.contains(" //error") || code.contains(" ///error")) {
 				code = "<font color=\"red\">" + code + "</font>";
